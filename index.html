@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="src/style/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <title>Gerador de Senhas</title>
 </head>
@@ -20,20 +20,64 @@
                 Utilize o nosso gerador de senhas online para criar uma senhas forte e segura.
             </p>
         </section>
-        
-        
-        <input type="text" name="password" id="password" />
+
+        <section class="box">
+            <div class="password">
+                <div class="text">
+                    <input type="text" name="password" id="password" />
+                </div>
+                <div class="actions">
+                   <button id="copy-1">
+                    <img src="src/images/copy.svg" alt="botão copia" width="42">
+                   </button> 
+                   <button id="renew">
+                    <img src="src/images/renew.svg" alt="botão reload" width="42">
+                   </button>
+                </div>
+            </div>
+            <div class="security-indicator">
+                <div id="security-indicator-bar" class="bar" style="width: 90%;"></div>
+            </div>
+        </section>     
         
         <!-- <input type="number" value="12" name="length" class="lp-custom-range__number" step="1" id="lp-pg-password-length" min="0" max="64"> -->
-        
-        <input
+
+        <section class="box customize">
+            <h3 class="tittle">Personalizar</h3>
+            <div class="actions">
+                <div class="password-length">                    
+                <p>Tamanho: <span id="password-lentgh-text">16</span></p>
+                <input
             type="range"
             name="password-length"
             id="password-length"
             value="16"
             min="4"
-            max="64">
-        <button id="copy">Copiar senha</button>
+            max="64"
+            />     
+                </div>
+                <div class="config">
+                    <label class="checkbox-container">
+                        <span class="text">Maiúsculas</span>
+                        <input type="checkbox" id="uppercase-check" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">
+                        <span class="text">Números</span>
+                        <input type="checkbox" id="number-check" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="checkbox-container">
+                        <span class="text">Símbolos</span>
+                        <input type="checkbox" id="symbol-check" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>            
+        </section>
+        
+        <button id="copy-2">Copiar senha</button>
+        
     </main>
 
     <script>
@@ -64,8 +108,8 @@
             console.log(passwordLength)
         })
 
-        const copyButtonEl = document.querySelector("#copy")
-        copyButtonEl.addEventListener('click', copy)
+        document.querySelector("#copy-1").addEventListener('click', copy)
+        document.querySelector("#copy-2").addEventListener('click', copy)
 
         generatePassword()
     </script>
