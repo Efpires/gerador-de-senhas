@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/style/reset.css">
+    <link rel="stylesheet" href="src/style/style.css">
     <title>Gerador de Senhas</title>
 </head>
 <body>
@@ -19,10 +21,12 @@
         min="4" 
         max="64">
 
-    <button>Copiar senha</button>
+    <button id="copy">Copiar senha</button>
 
     <script>
         let passwordLength = 16
+        const inputEl = document.querySelector("#password")
+
         function generatePassword() {
             const chars = 
                 "abcçdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@&*()[]"
@@ -32,10 +36,12 @@
             for (let i = 0; i < passwordLength; i++) {
                 const randomNumber = Math.floor(Math.random() * chars.length)
                 password += chars.substring(randomNumber, randomNumber + 1)
-            }
-
-            const inputEl = document.querySelector("#password")
+            }            
             inputEl.value = password
+        }
+
+        function copy() {
+            navigator.clipboard.writeText(inputEl.value)
         }
 
         const passwordLengthEl = document.querySelector("#password-length")
@@ -43,6 +49,9 @@
             passwordLength = passwordLengthEl.value
             generatePassword()
         })
+
+        const copyButtonEl = document.querySelector("#copy")
+        copyButtonEl.addEventListener('click', copy)
 
         generatePassword()
     </script>
